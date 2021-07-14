@@ -11,18 +11,21 @@
 
 ### Project Summary
 
-We want to explore MX election results from 2021 and its evolution from past elections to discover the main economic metrics effect over the people’s voting preference.
+Explore Nuevo Leon's election results from 2021 and its evolution from past election to discover the main sociodemographic metrics effect over the people’s voting preference.
 
 ### Data Sources
 
 + Instituto Nacional Electoral (INE)
 + Comisión Estatal Electoral de Nuevo León (CEENL)
 + Censo de Población y Vivienda 2020 (INEGI)
++ DataMÉXICO
 
 ### Visualization Inspiration
 
-![Dashboard](resources/images/Dashboard.png)
+| Dashboard |
+| --- |
+| ![Dashboard](resources/images/Dashboard.png) |
 
-![Radar](resources/images/Radar.png)
-
-
+| Radar Chart | Choropleth Map |
+| --- | --- |
+| ![Radar](resources/images/Radar.png) | ![Desigualdad](resources/images/Desigualdad.png) |
