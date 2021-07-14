@@ -23,4 +23,6 @@ We want to explore MX election results from 2021 and its evolution from past ele
 
 ![Dashboard](resources/images/Dashboard.png)
 
+![Radar](resources/images/Radar.png)
+
 
