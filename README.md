@@ -13,6 +13,9 @@
 
 Explore Nuevo Leon's election results from 2021 and its evolution from past election to discover the main sociodemographic metrics effect over the people’s voting preference.
 
+**Project Outline:** 
+https://docs.google.com/document/d/1PTsk3bbKGaR3K514hCuUtOojC-BtaWy3CoEWIORVozA/edit?usp=sharing
+
 ### Data Sources
 
 + Instituto Nacional Electoral (INE)
