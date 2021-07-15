@@ -1,0 +1,34 @@
+identifier: MEX-INEGI.ESD2.01-CPV-2020
+
+title: Principales resultados por localidad (ITER) del Censo de Población y Vivienda 2020. Datos oportunos
+
+description: 
+INEGI. Censo de Población y Vivienda 2020. SNIEG. Información de Interés Nacional.
+Conjunto de indicadores de población y vivienda a nivel localidad de la entidad federativa de Nuevo León, provenientes del Censo de Población y Vivienda 2020.
+
+NOTA:
+El 16 de marzo de 2021, se reemplazó el archivo del Conjunto de datos, debido a que se incorporó la variable Total de viviendas particulares habitadas con características. Asimismo, en el archivo Diccionario de datos se hizo una revisión para mejorar la redacción de la descripción de los indicadores.
+
+El 16 de abril de 2021, se reemplazó el archivo del Diccionario de datos, debido a que se mejoró la redacción de algunos indicadores.
+
+modified: 2021-04-16
+
+publisher: Instituto Nacional de Estadística y Geografía, INEGI
+
+mbox: atencion.usuarios@inegi.org.mx
+
+license: https://www.inegi.org.mx/inegi/terminos.html
+
+dataDictionary: https://www.inegi.org.mx/rnm/index.php/catalog/632/data_dictionary?idPro=
+
+keyword: “vivienda", "personas", "censo", "iter", "localidad", "población", "hogar",  "indicadores", "fecundidad", "migración", "indígena", "discapacidad", "educación", "económicas", "salud", "conyugal", "religión"
+
+contactPoint: Mtro. J. Armando Aguiar Rodríguez, 800 111 4634
+
+temporal: 2020-03-15-2020-03-15
+
+spatial: Nuevo León
+
+accrualPeriodicity: Decenalmente
+
+distribution: https://www.inegi.org.mx/programas/ccpv/2020/
