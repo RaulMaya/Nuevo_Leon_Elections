@@ -1,0 +1,4 @@
+API_1
+https://datamexico.org/api/data?State=19&Year=2018&cube=coneval_gini_mun&drilldowns=Municipality&measures=GINI&parents=true&sparse=false&locale=es
+API_2
+https://datamexico.org/api/data?State=19&Year=2015&cube=inegi_population&drilldowns=Municipality&measures=Population&parents=false&sparse=false&locale=es
