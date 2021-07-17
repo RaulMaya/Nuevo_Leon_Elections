@@ -1,4 +1,4 @@
-,ID,Municipality,Population
+,ID,Municipio,Population
 0,19001,Abasolo,2639
 1,19002,Agualeguas,2439
 2,19003,Los Aldamas,1292
@@ -12,18 +12,18 @@
 10,19011,Cerralvo,7757
 11,19012,Ciénega de Flores,42715
 12,19013,China,10835
-13,19014,Doctor Arroyo,34110
-14,19015,Doctor Coss,1632
-15,19016,Doctor González,2861
+13,19014,Dr. Arroyo,34110
+14,19015,Dr. Coss,1632
+15,19016,Dr. González,2861
 16,19017,Galeana,41130
 17,19018,García,247370
 18,19019,San Pedro Garza García,123156
-19,19020,General Bravo,5479
-20,19021,General Escobedo,425148
-21,19022,General Terán,14795
-22,19023,General Treviño,1044
-23,19024,General Zaragoza,6011
-24,19025,General Zuazua,67294
+19,19020,Gral. Bravo,5479
+20,19021,Gral. Escobedo,425148
+21,19022,Gral. Terán,14795
+22,19023,Gral. Treviño,1044
+23,19024,Gral. Zaragoza,6011
+24,19025,Gral. Zuazua,67294
 25,19026,Guadalupe,682880
 26,19027,Los Herreras,1764
 27,19028,Higueras,1511
