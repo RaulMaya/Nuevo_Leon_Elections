@@ -1,4 +1,4 @@
-,Nations ID,Nation,State ID,State,Municipality ID,Municipality,GINI
+,Nations ID,Nation,State ID,State,ID,Municipio,GINI
 0,mex,México,19,Nuevo León,19001,Abasolo,0.39608949422836304
 1,mex,México,19,Nuevo León,19002,Agualeguas,0.4282120019197464
 2,mex,México,19,Nuevo León,19003,Los Aldamas,0.43546900153160095
@@ -12,18 +12,18 @@
 10,mex,México,19,Nuevo León,19011,Cerralvo,0.3559134900569916
 11,mex,México,19,Nuevo León,19012,Ciénega de Flores,0.31255699694156647
 12,mex,México,19,Nuevo León,19013,China,0.36139699816703796
-13,mex,México,19,Nuevo León,19014,Doctor Arroyo,0.4903104901313782
-14,mex,México,19,Nuevo León,19015,Doctor Coss,0.41352300345897675
-15,mex,México,19,Nuevo León,19016,Doctor González,0.4344000071287155
+13,mex,México,19,Nuevo León,19014,Dr. Arroyo,0.4903104901313782
+14,mex,México,19,Nuevo León,19015,Dr. Coss,0.41352300345897675
+15,mex,México,19,Nuevo León,19016,Dr. González,0.4344000071287155
 16,mex,México,19,Nuevo León,19017,Galeana,0.47390249371528625
 17,mex,México,19,Nuevo León,19018,García,0.34960000216960907
 18,mex,México,19,Nuevo León,19019,San Pedro Garza García,0.3630619943141937
-19,mex,México,19,Nuevo León,19020,General Bravo,0.39313800632953644
-20,mex,México,19,Nuevo León,19021,General Escobedo,0.37177449464797974
-21,mex,México,19,Nuevo León,19022,General Terán,0.4040919989347458
-22,mex,México,19,Nuevo León,19023,General Treviño,0.4132149964570999
-23,mex,México,19,Nuevo León,19024,General Zaragoza,0.44894200563430786
-24,mex,México,19,Nuevo León,19025,General Zuazua,0.3067544996738434
+19,mex,México,19,Nuevo León,19020,Gral. Bravo,0.39313800632953644
+20,mex,México,19,Nuevo León,19021,Gral. Escobedo,0.37177449464797974
+21,mex,México,19,Nuevo León,19022,Gral. Terán,0.4040919989347458
+22,mex,México,19,Nuevo León,19023,Gral. Treviño,0.4132149964570999
+23,mex,México,19,Nuevo León,19024,Gral. Zaragoza,0.44894200563430786
+24,mex,México,19,Nuevo León,19025,Gral. Zuazua,0.3067544996738434
 25,mex,México,19,Nuevo León,19026,Guadalupe,0.3605865091085434
 26,mex,México,19,Nuevo León,19027,Los Herreras,0.4398624897003174
 27,mex,México,19,Nuevo León,19028,Higueras,0.41031549870967865
