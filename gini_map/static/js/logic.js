@@ -4,7 +4,7 @@ function getColor(d) {
          d > 0.37  ? '#E31A1C' :
          d > 0.35 ? '#FC4E2A' :
          d > 0.33 ? '#FD8D3C' :
-         d > -1  ? '#FED976' :
+         d > 0.31  ? '#FED976' :
                     '#FFEDA0';
 }
 
@@ -64,30 +64,91 @@ var darkmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{
   L.control.layers(baseMaps).addTo(myMap);
 
 d3.json(nlMunicipality).then(function(data){
-  console.log(data.features)
+  var json_data =  data
+  console.log(data.features.length);
+  console.log();
+  console.log(data);
 
   d3.json(ginis).then(function(feature){
     var gini_object = feature.GINI
-    console.log(gini_object.length)
+    console.log(gini_object)
 
     gini_list = []
 
-    for (let i = 0; i < 51; i++) {
+    for (let i = 0; i < data.features.length; i++) {
       var g  = gini_object[i];
       gini_list.push(g)
     };
 
     console.log(gini_list)
 
+    
 
-  L.geoJson(data,{
+    for (let i = 0; i < data.features.length; i++) {
+      json_data.features[i].Gini = gini_list[i]
+    };
+console.log(json_data)
+
+
+  L.geoJson(json_data,{
     style: function(feature){
       return{
         color: "red",
-        fillColor: getColor(gini_list)
-      }
-    }
+        fillColor: getColor(feature.Gini),
+        fillOpacity: 0.5,
+        weight: 1
+      };
+    },
+
+    onEachFeature: function(feature, layer) {
+
+      layer.on({
+        mouseover: function(event) {
+          layer = event.target;
+          layer.setStyle({
+            fillOpacity: 0.9
+          });
+        },
+        mouseout: function(event) {
+          layer = event.target;
+          layer.setStyle({
+            fillOpacity: 0.5
+          });
+        },
+        click: function(event) {
+          myMap.fitBounds(event.target.getBounds());
+        }
+      });
+      layer.bindPopup(`<p><b><u>${feature.properties.nomgeo}</b></u></p><hr>
+      <h2><b><u>Gini:</u></b> ${feature.Gini}</h2><br>
+      <h2><b><u>ID de Municipio:</u></b> ${feature.properties.cve_mun}</h2><br>
+      <h2><b><u>Estado:</u></b> Nuevo León</h2>`);
+    
+        }
   }).addTo(myMap);
+
+  var legend = L.control({ position: 'bottomright' });
+    legend.onAdd = function (map) {
+
+        var div = L.DomUtil.create('div', 'info legend'),
+            grades = [0.31, 0.33, 0.35, 0.37, 0.39, 0.41],
+            labels = ['<b>Ginis</b>'],
+            from, to;
+
+            for (var i = 0; i < grades.length; i++) {
+                from = grades [i];
+                to = grades[i+1];
+        
+            labels.push(
+                '<i style="background:' + getColor(from) + '"></i> ' +
+                from + (to ? '&ndash;' + to : '+'));
+                }
+                div.innerHTML = labels.join('<br>');
+                return div;
+    };
+
+    legend.addTo(myMap);
+
 });
 });
 

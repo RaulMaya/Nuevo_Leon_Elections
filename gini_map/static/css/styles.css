@@ -9,14 +9,17 @@ html {
   height: 100%;
 }
 
+
 h2{
-    color: rgba(85, 0, 0, 0.979);
-    font-size: 14px;
+    color: rgba(105, 0, 0, 0.979);
+    font-size: 12.5px;
+    padding: 0px;
 }
 
 p{
-    font-size: 14px;
+    font-size: 16px;
     color: rgb(150, 0, 0);
+    padding: 0px;
 
 }
 .leaflet-popup-content-wrapper, .leaflet-popup.tip p {
@@ -24,13 +27,6 @@ p{
   text-align: center;
 
 }
-
-.leaflet-popup-content-wrapper, .leaflet-popup.tip{
-    background-color: #FFEDA0;
-    text-align: center;
-
-
-  }
 
 .info {
     padding: 6px 8px;
@@ -49,9 +45,10 @@ p{
     padding: 6px 8px;
     font: 14px/16px Arial, Helvetica, sans-serif;
     background: white;
-    background: rgba(255,255,255,0.8);
+    background: rgba(255, 255, 255, 0.904);
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     border-radius: 5px;
+    text-align: center;
 }
 .info h4 {
     margin: 0 0 5px;
@@ -61,6 +58,7 @@ p{
 .legend {
     line-height: 18px;
     color: #555;
+ 
 }
 .legend i {
     width: 18px;

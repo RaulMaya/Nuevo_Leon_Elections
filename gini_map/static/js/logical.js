@@ -89,9 +89,6 @@ d3.json(nlMunicipality).then(function(data){
     };
 console.log(json_data)
 
- 
-
-
 
   L.geoJson(json_data,{
     style: function(feature){
@@ -100,8 +97,32 @@ console.log(json_data)
         fillColor: getColor(feature.Gini),
         fillOpacity: 0.5,
         weight: 1
-      }
-    }
+      };
+    },
+
+    onEachFeature: function(feature, layer) {
+
+      layer.on({
+        mouseover: function(event) {
+          layer = event.target;
+          layer.setStyle({
+            fillOpacity: 0.9
+          });
+          layer.bindPopup("<h1>" + feature.Gini+ "</h1> <hr> <h2>" + feature.properties.nomgeo + "</h2>");
+        },
+        mouseout: function(event) {
+          layer = event.target;
+          layer.setStyle({
+            fillOpacity: 0.5
+          });
+        },
+        click: function(event) {
+          myMap.fitBounds(event.target.getBounds());
+        }
+      });
+
+    
+        }
   }).addTo(myMap);
 });
 });
