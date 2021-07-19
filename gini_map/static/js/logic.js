@@ -80,12 +80,11 @@ d3.json(nlMunicipality).then(function(data){
       gini_list.push(g)
     };
 
-    console.log(gini_list)
-
-    
 
     for (let i = 0; i < data.features.length; i++) {
-      json_data.features[i].Gini = gini_list[i]
+      var num_id = json_data.features[i].properties.cve_mun
+      var num = parseInt(num_id-1 , 10)
+      json_data.features[i].Gini = gini_list[num]
     };
 console.log(json_data)
 
