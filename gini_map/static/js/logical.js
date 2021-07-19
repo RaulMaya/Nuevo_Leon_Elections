@@ -1,10 +1,10 @@
 function getColor(d) {
-  return d > 0.4  ? '#800026' :
-         d > 0.38  ? '#BD0026' :
-         d > 0.36  ? '#E31A1C' :
-         d > 0.34 ? '#FC4E2A' :
-         d > 0.32  ? '#FD8D3C' :
-         d > 0.30  ? '#FED976' :
+  return d > 0.41  ? '#800026' :
+         d > 0.39  ? '#BD0026' :
+         d > 0.37  ? '#E31A1C' :
+         d > 0.35 ? '#FC4E2A' :
+         d > 0.33 ? '#FD8D3C' :
+         d > -1  ? '#FED976' :
                     '#FFEDA0';
 }
 
@@ -64,16 +64,45 @@ var darkmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{
   L.control.layers(baseMaps).addTo(myMap);
 
 d3.json(nlMunicipality).then(function(data){
-  console.log(data.features)
-  d3.json(ginis).then(function(gini_data){
-    var gini = gini_data.GINI
-  L.geoJson(data, gini,{
-    style: function(gini){
+  var json_data =  data
+  console.log(data.features.length);
+  console.log();
+  console.log(data);
+
+  d3.json(ginis).then(function(feature){
+    var gini_object = feature.GINI
+    console.log(gini_object)
+
+    gini_list = []
+
+    for (let i = 0; i < data.features.length; i++) {
+      var g  = gini_object[i];
+      gini_list.push(g)
+    };
+
+    console.log(gini_list)
+
+    
+
+    for (let i = 0; i < data.features.length; i++) {
+      json_data.features[i].Gini = gini_list[i]
+    };
+console.log(json_data)
+
+ 
+
+
+
+  L.geoJson(json_data,{
+    style: function(feature){
       return{
         color: "red",
-        fillColor: getColor(gini)
+        fillColor: getColor(feature.Gini),
+        fillOpacity: 0.5,
+        weight: 1
       }
     }
   }).addTo(myMap);
 });
 });
+

@@ -1,10 +1,10 @@
 function getColor(d) {
-  return d > 40  ? '#800026' :
-         d > 30  ? '#BD0026' :
-         d > 20  ? '#E31A1C' :
-         d > 15 ? '#FC4E2A' :
-         d > 10  ? '#FD8D3C' :
-         d > 5  ? '#FED976' :
+  return d > 0.41  ? '#800026' :
+         d > 0.39  ? '#BD0026' :
+         d > 0.37  ? '#E31A1C' :
+         d > 0.35 ? '#FC4E2A' :
+         d > 0.33 ? '#FD8D3C' :
+         d > -1  ? '#FED976' :
                     '#FFEDA0';
 }
 
@@ -66,17 +66,28 @@ var darkmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{
 d3.json(nlMunicipality).then(function(data){
   console.log(data.features)
 
+  d3.json(ginis).then(function(feature){
+    var gini_object = feature.GINI
+    console.log(gini_object.length)
+
+    gini_list = []
+
+    for (let i = 0; i < 51; i++) {
+      var g  = gini_object[i];
+      gini_list.push(g)
+    };
+
+    console.log(gini_list)
+
+
   L.geoJson(data,{
-    style: function(feauture){
+    style: function(feature){
       return{
         color: "red",
-        fillColor: getColor(feauture.properties.cve_mun)
+        fillColor: getColor(gini_list)
       }
     }
   }).addTo(myMap);
 });
-
-d3.json(ginis).then(function(gini_data){
-  var gini = gini_data.GINI
-  console.log(gini)
 });
+
