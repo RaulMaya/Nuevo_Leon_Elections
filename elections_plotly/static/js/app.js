@@ -1,11 +1,119 @@
 // SELECT HTML ELEMENTS
-var dropdown = d3.select("#selDataset");
-var demographicInfo = d3.select("#sample-metadata");
+var dropdown = d3.select("#selMunicipio");
+var resultsInfo = d3.select("#election-results");
+
+
+
+// RENDER DROPDOWN FUNCTION
+function renderDrowpdown(municipios, ids) {
+    for (var i = 0; i < municipios.length; i++) {
+        dropdown.append('option').text(municipios[i]).attr("value", (ids[i]));
+    }
+}
+
+// RENDER RESULTS FUNCTION
+function renderResults(municipio) {
+    ganador = municipio.Ganador
+    console.log(ganador);
+    resultsInfo.html("")
+        .append('p').text(`Ganador: ${ganador}`)
+        .append('p').text(`Votos: ${municipio[ganador]}`)
+        .append('p').text(`${Math.round((municipio[ganador] / municipio.Total * 100), 2)}%`)
+
+    //         .style('font-size', '11.5px')
+    //         .style('font-weight', 'bold');
+}
+
+
+
+
 
 
 // LOAD, RENDER & PLOT
 // Read JSON dataset using D3 library (samples.json)
-d3.json("data/samples.json").then((data) => {
+d3.json("../../../cleaning/Elecciones_NL/output/id_municipios.json").then((data) => {
+
+    console.log("Municipios:", data);
+
+    var ids = data.map(d => d.ID);
+    var municipios = data.map(d => d.Municipio);
+
+    console.log("IDs:", ids);
+    console.log("Municipios:", municipios);
+
+    renderDrowpdown(municipios, ids);
+
+
+    d3.json("../../../cleaning/Elecciones_NL/output/resultados_a2021.json").then((a2021) => {
+
+        console.log("Resultados:", a2021)
+
+        var defaultMunicipio = a2021.find((d) => d.ID === 19001);
+
+        console.log("defaultMunicipio:", defaultMunicipio)
+
+        renderResults(defaultMunicipio);
+
+        var ganadores = ['PAN', 'PRI', 'MC', 'MORENA', 'PANAL', 'PES', 'PRD'];
+        var color = ['blue', 'red', 'orange', 'brown', 'pink', 'cyan', 'yellow']
+        var x = ganadores.map(d => defaultMunicipio[d] / defaultMunicipio.Total * 100).reverse();
+        var y = ganadores.map(d => `${d} `).reverse();
+
+        // HORIZONTAL BAR CHART
+        var trace = {
+            type: 'bar',
+            orientation: 'h',
+            x: x,
+            y: y,
+            // text: otu_labels.slice(0, 10)
+            marker: {
+                color: color.reverse()
+            }
+        };
+
+        var layout = {
+            title: {
+                text: "Resultados Electorales",
+                font: { size: 20, color: 'black' },
+                y: 0.87
+            },
+            xaxis: {
+                title: {
+                    text: "Porcentaje Votación",
+                    standoff: 15
+                }
+            }
+        };
+
+        Plotly.newPlot('bar', [trace], layout);
+
+
+
+
+
+
+
+
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}); /*
+
 
     // Assign data to variables
     var names = data.names.map((row) => parseInt(row));
@@ -76,88 +184,6 @@ d3.json("data/samples.json").then((data) => {
     };
 
     Plotly.newPlot('bar', [trace], layout);
-
-
-    // BUBBLE CHART
-    var trace = {
-        x: otu_ids,
-        y: sample_values,
-        text: otu_labels,
-        mode: 'markers',
-        marker: {
-            size: sample_values,
-            color: otu_ids,
-            colorscale: [
-                [0, 'rgb(0,0,255)'],
-                [0.5, 'rgb(0,255,0)'],
-                [1, 'rgb(255,0,0)']
-            ]
-        }
-    };
-
-    var layout = {
-        title: {
-            text: "Bacteria Cultures Per Sample",
-            font: { size: 20, color: 'black' },
-            y: 0.87
-        },
-        xaxis: {
-            title: {
-                text: "Operational Taxonomic Unit (OTU) ID",
-                standoff: 15
-            }
-
-        },
-        yaxis: { title: "Sample Values" },
-        showlegend: false
-    };
-
-    Plotly.newPlot('bubble', [trace], layout);
-
-
-    // GAUGE CHART
-    var trace = {
-        type: 'indicator',
-        mode: 'gauge+number',
-        value: defaultMetadata.wfreq,
-        title: {
-            text: "Scrubs per Week",
-            font: { size: 18, color: 'dimgrey' },
-        },
-        gauge: {
-            axis: {
-                range: [0, 9],
-                dtick: 1
-            },
-            bar: { color: 'red' },
-            steps: [
-                { range: [0, 1], color: "#F0F0F0" },
-                { range: [1, 2], color: "#E8E8E8" },
-                { range: [2, 3], color: "#E0E0E0" },
-                { range: [3, 4], color: "#D8D8D8" },
-                { range: [4, 5], color: "#D0D0D0" },
-                { range: [5, 6], color: "#C8C8C8" },
-                { range: [6, 7], color: "#C0C0C0" },
-                { range: [7, 8], color: "#B8B8B8" },
-                { range: [8, 9], color: "#B0B0B0" }
-            ],
-            threshold: {
-                line: { color: 'royalblue', width: 4 },
-                thickness: 0.80,
-                value: defaultMetadata.wfreq
-            }
-        },
-    };
-
-    var layout = {
-        title: {
-            text: "Belly Button Washing Frequency",
-            font: { size: 20, color: 'black' },
-            y: 0.80
-        }
-    };
-
-    Plotly.newPlot('gauge', [trace], layout);
 
 })
 
@@ -263,7 +289,8 @@ function optionChanged() {
         Plotly.restyle('gauge', 'gauge.threshold.value', value);
 
     });
-
 }
 
 console.log("Script successfully read");   // DEBUG
+
+*/
