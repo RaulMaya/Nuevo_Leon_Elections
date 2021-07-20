@@ -48,7 +48,7 @@ d3.json("../../../cleaning/Elecciones_NL/output/id_municipios.json").then((data)
 
         console.log("Resultados:", a2021)
 
-        var defaultMunicipio = a2021.find((d) => d.ID === 19001);
+        var defaultMunicipio = a2021.find((d) => d.ID === 19004);
 
         console.log("defaultMunicipio:", defaultMunicipio)
 
