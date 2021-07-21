@@ -3,10 +3,16 @@ body {
   margin: 0;
 }
 
-#map,
-body,
-html {
+#map {
+  height: 525px;
+  width: 525px;
+  position: relative;
+
+}
+
+#html, #body, #container {
   height: 100%;
+  width: 100%;
 }
 
 
@@ -38,6 +44,7 @@ p{
     border-radius: 5px;
     text-align: center;
 }
+
 .info h4 {
     margin: 0 0 5px;
     color: #777;
@@ -45,7 +52,12 @@ p{
 
 
 .legend {  
-    padding: 6px 8px;  line-height: 18px;  background: rgba(245, 245, 245, 0.75);   /* "whitesmoke" */   border-radius: 5px;  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);}
+    padding: 6px 8px; 
+    line-height: 18px; 
+    background: rgba(245, 245, 245, 0.75); 
+    border-radius: 5px;  
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);}
+
 
 .legend i {  
     width: 18px;  

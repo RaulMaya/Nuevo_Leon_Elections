@@ -56,7 +56,7 @@ var darkmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{
     };
 
   var myMap = L.map("map",{
-    center: [25.02, -100.52],
+    center: [25.54, -99.93],
     zoom: 7,
     layers: [darkmap]
   });
@@ -149,5 +149,7 @@ console.log(json_data)
     legend.addTo(myMap);
 
 });
+
+
 });
 
