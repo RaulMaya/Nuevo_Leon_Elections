@@ -142,7 +142,7 @@ console.log(json_data)
                 '<i style="background:' + getColor(from) + '"></i> ' +
                 from + (to ? '&ndash;' + to : '+'));
                 }
-                div.innerHTML = labels.join('<br>');
+              div.innerHTML = labels.join('<br>');
                 return div;
     };
 
