@@ -86,22 +86,31 @@ function renderBarJS(partMunicipio, partNL, year) {
 
     // Pending: Set animation parameters
     params = {
-        type: 'bar',
         data: {
-            labels: ['Municipio'],
+            labels: ['', '%', ''],
             datasets: [{
-                data: [partMunicipio],
+                type: 'bar',
+                data: [0, partMunicipio, 0],
                 backgroundColor: "yellow",
                 barThickness: 15,
+                order: 1,
+            }, {
+                type: 'line',
+                data: [partNL, partNL, partNL],
+                borderColor: "black",
+                pointRadius: 0,
+                order: 0,
             }],
         },
         options: {
             indexAxis: 'y',
             plugins: {
-                title: { display: true, text: "Participación ciudadana", font: { size: 15 } },
+                title: { display: true, text: "% Participación ciudadana", font: { size: 15 } },
                 legend: { display: false }
             },
-            scales: { x: { min: 0, max: 1 } }
+            scales: { x: { min: 0, max: 100 } },
+            layout: { padding: { left: 55 } },
+            animation: false
         }
     }
 
@@ -112,14 +121,12 @@ function renderBarJS(partMunicipio, partNL, year) {
 }
 
 
-
-
 // RUN YEAR FUNCTION
 function runYear(id_municipio, year) {
 
-    if (year === 2015) { link = link_a2015; text = "2015"; id = "chart-2015" }
-    else if (year === 2018) { link = link_a2018; text = "2018"; id = "chart-2018" }
-    else if (year === 2021) { link = link_a2021; text = "2021"; id = "chart-2021" }
+    if (year === 2015) { link = link_a2015; }
+    else if (year === 2018) { link = link_a2018; }
+    else if (year === 2021) { link = link_a2021; }
 
     d3.json(link).then((year_data) => {
 
@@ -132,8 +139,8 @@ function runYear(id_municipio, year) {
 
         var totalVotos = year_data.map(d => d.Total);
         var listaNominal = year_data.map(d => d.LNominal);
-        var partNL = math.add(...totalVotos) / math.add(...listaNominal)
-        var partMunicipio = rowMunicipio.Total / rowMunicipio.LNominal;
+        var partNL = math.add(...totalVotos) / math.add(...listaNominal) * 100
+        var partMunicipio = rowMunicipio.Total / rowMunicipio.LNominal * 100;
 
         renderBarJS(partMunicipio, partNL, year);
 
@@ -147,8 +154,8 @@ function runYear(id_municipio, year) {
     });
 }
 
-// RUN EVENT FUNCTION
-function runEvent(id_municipio) {
+// RUN ENTER FUNCTION
+function runEnter(id_municipio) {
 
     // DROPDOWN
     // Pending: Delete HTML Element
@@ -169,7 +176,7 @@ function runEvent(id_municipio) {
 }
 
 // INIT
-runEvent(defaultID);
+runEnter(defaultID);
 
 // CHANGE OPTION FUNCTION
 function optionChanged() {
@@ -184,7 +191,7 @@ function optionChanged() {
     part2018.destroy();
     part2021.destroy();
 
-    runEvent(selectedID);
+    runEnter(selectedID);
 
 }
 
