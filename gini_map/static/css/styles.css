@@ -65,3 +65,12 @@ p{
     float: left;  
     margin-right: 8px;  
     opacity: 0.7;};
+
+.panel{
+  background-color: #ffffff;
+}
+
+.panel-heading{
+  background-color: rgb(156, 4, 4);
+  color: #ffffff;
+}
