@@ -2,11 +2,11 @@
 var defaultID = 19001;
 
 // ENDPOINTS
+var link;
 var link_id = "../../../cleaning/output/id_municipios.json";
 var link_a2015 = "../../../cleaning/output/resultados_a2015.json";
 var link_a2018 = "../../../cleaning/output/resultados_a2018.json";
 var link_a2021 = "../../../cleaning/output/resultados_a2021.json";
-var link;
 
 // SELECT HTML ELEMENTS
 var title = d3.select("#nombre-municipio");
@@ -84,7 +84,14 @@ function renderBarJS(partMunicipio, partNL, year) {
     var bar2018 = document.getElementById("bar-2018").getContext('2d');
     var bar2021 = document.getElementById("bar-2021").getContext('2d');
 
+    if (year === 2015) { text = "% Participación Municipio" }
+    else if (year === 2018) { text = ""  }
+    else if (year === 2021) { text = " | Participación Nuevo León"  }
+
     // Pending: Set animation parameters
+    // Pending: bar title % / / *Participación
+    // Pending: nombreMunicipio en Tarjeta
+
     params = {
         data: {
             labels: ['', '%', ''],
@@ -105,7 +112,7 @@ function renderBarJS(partMunicipio, partNL, year) {
         options: {
             indexAxis: 'y',
             plugins: {
-                title: { display: true, text: "% Participación ciudadana", font: { size: 15 } },
+                title: { display: true, text: text, font: { size: 15 } },
                 legend: { display: false }
             },
             scales: { x: { min: 0, max: 100 } },
