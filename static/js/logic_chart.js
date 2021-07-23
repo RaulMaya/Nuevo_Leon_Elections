@@ -2,36 +2,47 @@
 var defaultID = 19001;
 
 // ENDPOINTS
+var link;
 var link_id = "../../A_ETL_Process/output/id_municipios.json";
 var link_a2015 = "../../A_ETL_Process/output/resultados_a2015.json";
 var link_a2018 = "../../A_ETL_Process/output/resultados_a2018.json";
 var link_a2021 = "../../A_ETL_Process/output/resultados_a2021.json";
-var link;
+var link_iter = "../../A_ETL_Process/output/iter_1920r.js";
+var link_gini = "../../A_ETL_Process/output/dataframe_merged_apisr.js";
+var link_sup = "../../A_ETL_Process/output/superficie_NL.json";
 
 // SELECT HTML ELEMENTS
-var title = d3.select("#nombre-municipio");
-// var resultsInfo = d3.select("#election-results");
 var demographicInfo = d3.select("#election-results");
 
-// RENDER TITLE FUNCTION
-function renderTitle(id_municipio) {
-
-    d3.json(link_id).then((id_data) => {
-        var rowMunicipio = id_data.find((d) => d.ID === id_municipio);
-        title.html("").append('p').text(`Municipio ${rowMunicipio.ID}: ${rowMunicipio.Municipio}`);
-    });
-}
-
 // RENDER RESULTS FUNCTION
-function renderResults(municipio) {
-    ganador = municipio.Ganador
-    console.log(ganador);
-    demographicInfo.html("")
-        .append('p').text(`Ganador: ${ganador}`)
-        .append('p').text(`Votos: ${municipio[ganador]}`)
-        .append('p').text(`${Math.round((municipio[ganador] / municipio.Total * 100), 2)}%`)
-    //         .style('font-size', '11.5px')
-    //         .style('font-weight', 'bold');
+function renderInfo(id_municipio) {
+
+    d3.json(link_iter).then((iter_data) => {
+        d3.json(link_gini).then((gini_data) => {
+            d3.json(link_sup).then((sup_data) => {
+
+                var rowIter = iter_data.find((d) => d.ID === id_municipio);
+                var rowGini = gini_data.find((d) => d.ID === id_municipio);
+                var rowSup = sup_data.find((d) => d.ID === id_municipio);
+                var poblacionNL = iter_data.map(d => d.POBTOT);
+                var pobNL = math.add(...poblacionNL);
+
+                demographicInfo.html("")
+                    .append('h2').text(`${rowSup.Municipio}`)
+                    .append('h5').text(`Gini: ${rowGini.GINI.toFixed(2)}`)
+                    .append('h5').text(`Población: ${rowIter.POBTOT} hab (${(rowIter.POBTOT / pobNL * 100).toFixed(2)}% NL)`)
+                    // .append('h5').text(`NL: ${(rowIter.POBTOT / pobNL * 100).toFixed(2)} %`)
+                    .append('h5').text(`Densidad: ${(rowIter.POBTOT / rowSup.Superficie).toFixed(1)} hab/km2`)
+                    .append('h5').text(`Escolaridad: ${parseFloat(rowIter.GRAPROES).toFixed(1)} años`)
+                    .append('h5').text(`Desempleo: ${(rowIter.PDESOCUP / rowIter.PEA * 100).toFixed(2)}%`)
+                    .append('h5').text(`Sin Serv. Salud: ${(rowIter.PSINDER / rowIter.POBTOT * 100).toFixed(2)}%`);
+
+                //         .style('font-size', '11.5px')
+                //         .style('font-weight', 'bold');
+
+            });
+        });
+    });
 }
 
 // RENDER CHART.JS FUNCTION
@@ -136,13 +147,12 @@ function runYear(id_municipio, year) {
 
         var totalVotos = year_data.map(d => d.Total);
         var listaNominal = year_data.map(d => d.LNominal);
-        var partNL = math.add(...totalVotos) / math.add(...listaNominal) * 100
+        var partNL = math.add(...totalVotos) / math.add(...listaNominal) * 100;
         var partMunicipio = rowMunicipio.Total / rowMunicipio.LNominal * 100;
 
         renderBarJS(partMunicipio, partNL, year);
 
-        console.log("Participación:", partNL, partMunicipio);
-
+        // console.log("Participación:", partNL, partMunicipio);
         // console.log("Municipio:", rowMunicipio.Municipio);
         // console.log("Año:", year);
         // console.log("X:", x);
@@ -154,8 +164,7 @@ function runYear(id_municipio, year) {
 // RUN ENTER FUNCTION
 function runEnter(id_municipio) {
 
-    renderTitle(id_municipio);
-    renderResults(id_municipio);
+    renderInfo(id_municipio);
     runYear(id_municipio, 2015);
     runYear(id_municipio, 2018);
     runYear(id_municipio, 2021);
@@ -165,15 +174,15 @@ function runEnter(id_municipio) {
 // INIT
 runEnter(defaultID);
 
-
+// MAP CHANGE FUNCTION
 var mapChange = (e) => {
     selectedID = parseInt(e.target.feature.properties.cvegeo);
-    optionChanged(selectedID);
-    tableGenerator(e);
+    optionChange(selectedID);
+    // tableGenerator(e);
 }
 
-
-function optionChanged(selectedID) {
+// OPTION CHANGE FUNCTION
+function optionChange(selectedID) {
 
     console.log(selectedID);
 
@@ -209,15 +218,15 @@ function optionChanged(selectedID) {
 
 // Pending: Delete debug MSGs
 
-function tableGenerator(e) {
+// function tableGenerator(e) {
 
-    demographicInfo.html("");
-    demographicInfo.append("p").text(`Municipio: ${e.target.feature.properties.nomgeo}`);
-    demographicInfo.append("p").text(`Gini: ${e.target.feature.Gini}`);
-    demographicInfo.append("p").text(`Población Total: ${e.target.feature.Population}`);
-    demographicInfo.append("p").text(`Grado Promedio de Escolaridad: ${e.target.feature.Scholarship}`);
-    demographicInfo.append("p").text(`Población Economicamente Activa: ${e.target.feature.EconomicallyActive / e.target.feature.Population*100}%`);
-    // demographicInfo.append("p").text(`Población Desocupada: ${e.target.feature.Unemployment / (e.target.feature.EconomicallyActive+e.target.feature.Unemployment)*100}%`);
-    demographicInfo.append("p").text(`Población sin Afiliación a Servicios de Salud: ${e.target.feature.LackOfHS / e.target.feature.Population*100}%`);
+//     demographicInfo.html("");
+//     demographicInfo.append("p").text(`Municipio: ${e.target.feature.properties.nomgeo}`);
+//     demographicInfo.append("p").text(`Gini: ${e.target.feature.Gini}`);
+//     demographicInfo.append("p").text(`Población Total: ${e.target.feature.Population}`);
+//     demographicInfo.append("p").text(`Grado Promedio de Escolaridad: ${e.target.feature.Scholarship}`);
+//     demographicInfo.append("p").text(`Población Economicamente Activa: ${e.target.feature.EconomicallyActive / e.target.feature.Population * 100}%`);
+//     // demographicInfo.append("p").text(`Población Desocupada: ${e.target.feature.Unemployment / (e.target.feature.EconomicallyActive+e.target.feature.Unemployment)*100}%`);
+//     demographicInfo.append("p").text(`Población sin Afiliación a Servicios de Salud: ${e.target.feature.LackOfHS / e.target.feature.Population * 100}%`);
 
-}
+// }

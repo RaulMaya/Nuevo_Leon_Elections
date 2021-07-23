@@ -11,15 +11,13 @@ body {
 }
 
 /* set map, body, and html to 100% of the screen size */
-
-
-
 #map {
-  height: 600px;
-  width: 600px;
   position: relative;
-
-}
+  border: 1px solid black;
+  border-radius: 8px;
+  height: 840px;
+  width: 100%; 
+  }
 
 .slide {
     margin-top: 10px;
