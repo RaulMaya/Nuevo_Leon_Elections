@@ -10,15 +10,8 @@ var link;
 
 // SELECT HTML ELEMENTS
 var title = d3.select("#nombre-municipio");
-var dropdown = d3.select("#selMunicipio");
-var resultsInfo = d3.select("#election-results");
-
-// RENDER DROPDOWN FUNCTION
-function renderDrowpdown(municipios, ids) {
-    for (var i = 0; i < municipios.length; i++) {
-        dropdown.append('option').text(municipios[i]).attr("value", (ids[i]));
-    }
-}
+// var resultsInfo = d3.select("#election-results");
+var demographicInfo = d3.select("#election-results");
 
 // RENDER TITLE FUNCTION
 function renderTitle(id_municipio) {
@@ -157,17 +150,6 @@ function runYear(id_municipio, year) {
 // RUN ENTER FUNCTION
 function runEnter(id_municipio) {
 
-    // DROPDOWN
-    // Pending: Delete HTML Element
-    d3.json(link_id).then((id_data) => {
-        console.log("Municipios:", id_data);
-        var ids = id_data.map(d => d.ID);
-        var municipios = id_data.map(d => d.Municipio);
-        console.log("IDs:", ids);
-        console.log("Municipios:", municipios);
-        renderDrowpdown(municipios, ids);
-    });
-
     renderTitle(id_municipio);
     runYear(id_municipio, 2015);
     runYear(id_municipio, 2018);
@@ -178,10 +160,17 @@ function runEnter(id_municipio) {
 // INIT
 runEnter(defaultID);
 
-// CHANGE OPTION FUNCTION
-function optionChanged() {
-    var selectedID = parseInt(dropdown.property('value'));
-    console.log("Selected:", selectedID);
+
+var mapChange = (e) => {
+    selectedID = parseInt(e.target.feature.properties.cvegeo);
+    optionChanged(selectedID);
+    tableGenerator(e);
+}
+
+
+function optionChanged(selectedID) {
+
+    console.log(selectedID);
 
     results2015.destroy();
     results2018.destroy();
@@ -195,5 +184,35 @@ function optionChanged() {
 
 }
 
+
+// // CHANGE OPTION FUNCTION
+// function optionChanged() {
+//     var selectedID = parseInt(dropdown.property('value'));
+//     console.log("Selected:", selectedID);
+
+//     results2015.destroy();
+//     results2018.destroy();
+//     results2021.destroy();
+
+//     part2015.destroy();
+//     part2018.destroy();
+//     part2021.destroy();
+
+//     runEnter(selectedID);
+
+// }
+
 // Pending: Delete debug MSGs
 
+function tableGenerator(e) {
+
+    demographicInfo.html("");
+    demographicInfo.append("p").text(`Municipio: ${e.target.feature.properties.nomgeo}`);
+    demographicInfo.append("p").text(`Gini: ${e.target.feature.Gini}`);
+    demographicInfo.append("p").text(`Población Total: ${e.target.feature.Population}`);
+    demographicInfo.append("p").text(`Grado Promedio de Escolaridad: ${e.target.feature.Scholarship}`);
+    demographicInfo.append("p").text(`Población Economicamente Activa: ${e.target.feature.EconomicallyActive / e.target.feature.Population*100}%`);
+    // demographicInfo.append("p").text(`Población Desocupada: ${e.target.feature.Unemployment / (e.target.feature.EconomicallyActive+e.target.feature.Unemployment)*100}%`);
+    demographicInfo.append("p").text(`Población sin Afiliación a Servicios de Salud: ${e.target.feature.LackOfHS / e.target.feature.Population*100}%`);
+
+}
