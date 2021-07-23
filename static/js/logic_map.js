@@ -73,7 +73,7 @@ function getColor(d) {
     console.log(data);
   
     d3.json(ginis).then(function(feature){
-      var gini_object = feature.GINI
+      var gini_object = feature
       console.log(gini_object)
   
       d3.json(iter).then(function(iData){
@@ -100,7 +100,7 @@ function getColor(d) {
       gini_list = []
   
       for (let i = 0; i < data.features.length; i++) {
-        var g  = gini_object[i];
+        var g  = gini_object[i].GINI;
         gini_list.push(g)
       };
       console.log(gini_list)

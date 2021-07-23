@@ -1,52 +1,52 @@
 ,Nations ID,Nation,State ID,State,ID,Municipio,GINI,Population
-0,mex,México,19,Nuevo León,19001,Abasolo,0.39608949422836304,2639
-1,mex,México,19,Nuevo León,19002,Agualeguas,0.4282120019197464,2439
-2,mex,México,19,Nuevo León,19003,Los Aldamas,0.43546900153160095,1292
-3,mex,México,19,Nuevo León,19004,Allende,0.3405584990978241,34353
-4,mex,México,19,Nuevo León,19005,Anáhuac,0.38375499844551086,18194
-5,mex,México,19,Nuevo León,19006,Apodaca,0.32352350652217865,597207
-6,mex,México,19,Nuevo León,19007,Aramberri,0.46362200379371643,16152
-7,mex,México,19,Nuevo León,19008,Bustamante,0.3342664986848831,3977
-8,mex,México,19,Nuevo León,19009,Cadereyta Jiménez,0.3680734932422638,95534
-9,mex,México,19,Nuevo León,19010,El Carmen,0.3395240008831024,38306
-10,mex,México,19,Nuevo León,19011,Cerralvo,0.3559134900569916,7757
-11,mex,México,19,Nuevo León,19012,Ciénega de Flores,0.31255699694156647,42715
-12,mex,México,19,Nuevo León,19013,China,0.36139699816703796,10835
-13,mex,México,19,Nuevo León,19014,Dr. Arroyo,0.4903104901313782,34110
-14,mex,México,19,Nuevo León,19015,Dr. Coss,0.41352300345897675,1632
-15,mex,México,19,Nuevo León,19016,Dr. González,0.4344000071287155,2861
-16,mex,México,19,Nuevo León,19017,Galeana,0.47390249371528625,41130
-17,mex,México,19,Nuevo León,19018,García,0.34960000216960907,247370
-18,mex,México,19,Nuevo León,19019,San Pedro Garza García,0.3630619943141937,123156
-19,mex,México,19,Nuevo León,19020,Gral. Bravo,0.39313800632953644,5479
-20,mex,México,19,Nuevo León,19021,Gral. Escobedo,0.37177449464797974,425148
-21,mex,México,19,Nuevo León,19022,Gral. Terán,0.4040919989347458,14795
-22,mex,México,19,Nuevo León,19023,Gral. Treviño,0.4132149964570999,1044
-23,mex,México,19,Nuevo León,19024,Gral. Zaragoza,0.44894200563430786,6011
-24,mex,México,19,Nuevo León,19025,Gral. Zuazua,0.3067544996738434,67294
-25,mex,México,19,Nuevo León,19026,Guadalupe,0.3605865091085434,682880
-26,mex,México,19,Nuevo León,19027,Los Herreras,0.4398624897003174,1764
-27,mex,México,19,Nuevo León,19028,Higueras,0.41031549870967865,1511
-28,mex,México,19,Nuevo León,19029,Hualahuises,0.3820144981145859,6921
-29,mex,México,19,Nuevo León,19030,Iturbide,0.4339814931154251,3571
-30,mex,México,19,Nuevo León,19031,Juárez,0.33611099421977997,333481
-31,mex,México,19,Nuevo León,19032,Lampazos de Naranjo,0.35016100108623505,5238
-32,mex,México,19,Nuevo León,19033,Linares,0.3800494968891144,79853
-33,mex,México,19,Nuevo León,19034,Marín,0.36542950570583344,5630
-34,mex,México,19,Nuevo León,19035,Melchor Ocampo,0.42885400354862213,955
-35,mex,México,19,Nuevo León,19036,Mier y Noriega,0.43868349492549896,6996
-36,mex,México,19,Nuevo León,19037,Mina,0.3676680028438568,5326
-37,mex,México,19,Nuevo León,19038,Montemorelos,0.36404699087142944,60829
-38,mex,México,19,Nuevo León,19039,Monterrey,0.38700999319553375,1109171
-39,mex,México,19,Nuevo León,19040,Parás,0.4421220123767853,971
-40,mex,México,19,Nuevo León,19041,Pesquería,0.3461969941854477,87168
-41,mex,México,19,Nuevo León,19042,Los Ramones,0.4165000021457672,4469
-42,mex,México,19,Nuevo León,19043,Rayones,0.4358984977006912,2640
-43,mex,México,19,Nuevo León,19044,Sabinas Hidalgo,0.36612948775291443,35456
-44,mex,México,19,Nuevo León,19045,Salinas Victoria,0.35779400169849396,54192
-45,mex,México,19,Nuevo León,19046,San Nicolás de los Garza,0.33596399426460266,430143
-46,mex,México,19,Nuevo León,19047,Hidalgo,0.35069701075553894,13836
-47,mex,México,19,Nuevo León,19048,Santa Catarina,0.34813249111175537,296954
-48,mex,México,19,Nuevo León,19049,Santiago,0.349869504570961,42407
-49,mex,México,19,Nuevo León,19050,Vallecillo,0.4288244992494583,1632
-50,mex,México,19,Nuevo León,19051,Villaldama,0.3905095010995865,4080
+0,mex,M��,19,Nuevo Le�,19001,Abasolo,0.396089494,2639
+1,mex,M��,19,Nuevo Le�,19002,Agualeguas,0.428212002,2439
+2,mex,M��,19,Nuevo Le�,19003,Los Aldamas,0.435469002,1292
+3,mex,M��,19,Nuevo Le�,19004,Allende,0.340558499,34353
+4,mex,M��,19,Nuevo Le�,19005,An��,0.383754998,18194
+5,mex,M��,19,Nuevo Le�,19006,Apodaca,0.323523507,597207
+6,mex,M��,19,Nuevo Le�,19007,Aramberri,0.463622004,16152
+7,mex,M��,19,Nuevo Le�,19008,Bustamante,0.334266499,3977
+8,mex,M��,19,Nuevo Le�,19009,Cadereyta Jim��,0.368073493,95534
+9,mex,M��,19,Nuevo Le�,19010,El Carmen,0.339524001,38306
+10,mex,M��,19,Nuevo Le�,19011,Cerralvo,0.35591349,7757
+11,mex,M��,19,Nuevo Le�,19012,Ci��nega de Fl,0.312556997,42715
+12,mex,M��,19,Nuevo Le�,19013,China,0.361396998,10835
+13,mex,M��,19,Nuevo Le�,19014,Dr. Arroyo,0.49031049,34110
+14,mex,M��,19,Nuevo Le�,19015,Dr. Coss,0.413523003,1632
+15,mex,M��,19,Nuevo Le�,19016,Dr. Gonz��,0.434400007,2861
+16,mex,M��,19,Nuevo Le�,19017,Galeana,0.473902494,41130
+17,mex,M��,19,Nuevo Le�,19018,Garc�,0.349600002,247370
+18,mex,M��,19,Nuevo Le�,19019,San Pedro Garza Garc�,0.363061994,123156
+19,mex,M��,19,Nuevo Le�,19020,Gral. Bravo,0.393138006,5479
+20,mex,M��,19,Nuevo Le�,19021,Gral. Escobedo,0.371774495,425148
+21,mex,M��,19,Nuevo Le�,19022,Gral. Ter�,0.404091999,14795
+22,mex,M��,19,Nuevo Le�,19023,Gral. Trevi�,0.413214996,1044
+23,mex,M��,19,Nuevo Le�,19024,Gral. Zaragoza,0.448942006,6011
+24,mex,M��,19,Nuevo Le�,19025,Gral. Zuazua,0.3067545,67294
+25,mex,M��,19,Nuevo Le�,19026,Guadalupe,0.360586509,682880
+26,mex,M��,19,Nuevo Le�,19027,Los Herreras,0.43986249,1764
+27,mex,M��,19,Nuevo Le�,19028,Higueras,0.410315499,1511
+28,mex,M��,19,Nuevo Le�,19029,Hualahuises,0.382014498,6921
+29,mex,M��,19,Nuevo Le�,19030,Iturbide,0.433981493,3571
+30,mex,M��,19,Nuevo Le�,19031,Ju��,0.336110994,333481
+31,mex,M��,19,Nuevo Le�,19032,Lampazos de Naranjo,0.350161001,5238
+32,mex,M��,19,Nuevo Le�,19033,Linares,0.380049497,79853
+33,mex,M��,19,Nuevo Le�,19034,Mar�,0.365429506,5630
+34,mex,M��,19,Nuevo Le�,19035,Melchor Ocampo,0.428854004,955
+35,mex,M��,19,Nuevo Le�,19036,Mier y Noriega,0.438683495,6996
+36,mex,M��,19,Nuevo Le�,19037,Mina,0.367668003,5326
+37,mex,M��,19,Nuevo Le�,19038,Montemorelos,0.364046991,60829
+38,mex,M��,19,Nuevo Le�,19039,Monterrey,0.387009993,1109171
+39,mex,M��,19,Nuevo Le�,19040,Par�,0.442122012,971
+40,mex,M��,19,Nuevo Le�,19041,Pesquer�,0.346196994,87168
+41,mex,M��,19,Nuevo Le�,19042,Los Ramones,0.416500002,4469
+42,mex,M��,19,Nuevo Le�,19043,Rayones,0.435898498,2640
+43,mex,M��,19,Nuevo Le�,19044,Sabinas Hidalgo,0.366129488,35456
+44,mex,M��,19,Nuevo Le�,19045,Salinas Victoria,0.357794002,54192
+45,mex,M��,19,Nuevo Le�,19046,San Nicol��s de los G,0.335963994,430143
+46,mex,M��,19,Nuevo Le�,19047,Hidalgo,0.350697011,13836
+47,mex,M��,19,Nuevo Le�,19048,Santa Catarina,0.348132491,296954
+48,mex,M��,19,Nuevo Le�,19049,Santiago,0.349869505,42407
+49,mex,M��,19,Nuevo Le�,19050,Vallecillo,0.428824499,1632
+50,mex,M��,19,Nuevo Le�,19051,Villaldama,0.390509501,4080
