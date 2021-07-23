@@ -1,1 +1,0 @@
-FLASK_APP=mty_elections/app.py flask run
