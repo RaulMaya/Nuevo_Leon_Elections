@@ -131,7 +131,7 @@ function getColor(d) {
   
       onEachFeature: function(feature, layer) {
   
-        var demographicInfo = d3.select("#sample-metadata");
+        var demographicInfo = d3.select("#election-results");
         demographicInfo.html("");
   
         layer.on({
