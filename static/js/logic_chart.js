@@ -26,7 +26,7 @@ function renderTitle(id_municipio) {
 function renderResults(municipio) {
     ganador = municipio.Ganador
     console.log(ganador);
-    resultsInfo.html("")
+    demographicInfo.html("")
         .append('p').text(`Ganador: ${ganador}`)
         .append('p').text(`Votos: ${municipio[ganador]}`)
         .append('p').text(`${Math.round((municipio[ganador] / municipio.Total * 100), 2)}%`)
@@ -77,6 +77,10 @@ function renderBarJS(partMunicipio, partNL, year) {
     var bar2018 = document.getElementById("bar-2018").getContext('2d');
     var bar2021 = document.getElementById("bar-2021").getContext('2d');
 
+    if (year === 2015) { text = "%  Participación Ciudadana" }
+    else if (year === 2018) { text = ""; }
+    else if (year === 2021) { text = "|  Promedio NL"; }
+
     // Pending: Set animation parameters
     params = {
         data: {
@@ -98,7 +102,7 @@ function renderBarJS(partMunicipio, partNL, year) {
         options: {
             indexAxis: 'y',
             plugins: {
-                title: { display: true, text: "% Participación ciudadana", font: { size: 15 } },
+                title: { display: true, text: text, font: { size: 15 } },
                 legend: { display: false }
             },
             scales: { x: { min: 0, max: 100 } },
@@ -151,6 +155,7 @@ function runYear(id_municipio, year) {
 function runEnter(id_municipio) {
 
     renderTitle(id_municipio);
+    renderResults(id_municipio);
     runYear(id_municipio, 2015);
     runYear(id_municipio, 2018);
     runYear(id_municipio, 2021);
