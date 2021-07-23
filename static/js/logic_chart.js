@@ -2,10 +2,10 @@
 var defaultID = 19001;
 
 // ENDPOINTS
-var link_id = "../../../cleaning/output/id_municipios.json";
-var link_a2015 = "../../../cleaning/output/resultados_a2015.json";
-var link_a2018 = "../../../cleaning/output/resultados_a2018.json";
-var link_a2021 = "../../../cleaning/output/resultados_a2021.json";
+var link_id = "../../A_ETL_Process/output/id_municipios.json";
+var link_a2015 = "../../A_ETL_Process/output/resultados_a2015.json";
+var link_a2018 = "../../A_ETL_Process/output/resultados_a2018.json";
+var link_a2021 = "../../A_ETL_Process/output/resultados_a2021.json";
 var link;
 
 // SELECT HTML ELEMENTS
