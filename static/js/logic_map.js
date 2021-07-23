@@ -12,7 +12,7 @@ function getColor(d) {
   
   var nlMunicipality = "../../D_Maps/static/data/nyu_geojson.json"
   
-  var ginis = "../../A_ETL_Process/output/dataframe_merged_apis.js"
+  var ginis = "../../A_ETL_Process/output/dataframe_merged_apisr.js"
   
   
   var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
