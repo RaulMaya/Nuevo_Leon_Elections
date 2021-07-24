@@ -69,7 +69,7 @@ var baseMaps = {
 
 var myMap = L.map("map", {
   center: [25.54, -99.93],
-  zoom: 8,
+  zoom: 7,
   layers: [lightmap]
 });
 
