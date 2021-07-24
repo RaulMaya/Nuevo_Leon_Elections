@@ -1,8 +1,3 @@
-
-
-
-
-
 // Pending: colorscale red -> green
 function getColor(d) {
   return d > 0.41 ? '#ff0000' :
@@ -299,7 +294,7 @@ d3.json(nlMunicipality).then(function (data) {
 
         var div = L.DomUtil.create('div', 'info legend'),
           grades = [0.31, 0.33, 0.35, 0.37, 0.39, 0.41],
-          labels = ['<b>Ginis</b>'],
+          labels = ['<b>Gini</b>'],
           from, to;
 
         for (var i = 0; i < grades.length; i++) {
