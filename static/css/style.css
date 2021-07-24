@@ -17,6 +17,15 @@ body {
   background-color: #F5F5F5;
 }
 
+/* set map style */
+#map {
+  position: relative;
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 740px;
+  width: 100%; 
+}
+
 /* set chart style */
 .chart-container {
   height: 157px;
@@ -27,15 +36,6 @@ body {
 .bar-container {
   height: 80px;
   width: 100%;
-}
-
-/* set map style */
-#map {
-  position: relative;
-  border: 1px solid black;
-  border-radius: 5px;
-  height: 700px;
-  width: 100%; 
 }
 
 .legend {
