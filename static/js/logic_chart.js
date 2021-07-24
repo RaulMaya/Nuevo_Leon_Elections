@@ -32,7 +32,7 @@ function renderInfo(id_municipio) {
                     rowGini.GINI.toFixed(2),
                     `${rowIter.POBTOT} hab (${(rowIter.POBTOT / pobNL * 100).toFixed(2)}% NL)`,
                     `${(rowIter.POBTOT / rowSup.Superficie).toFixed(1)} hab/km2`,
-                    `${parseFloat(rowIter.GRAPROES).toFixed(1)} años`,
+                    `${parseFloat(rowIter.GRAPROES).toFixed(1)} years`,
                     `${(rowIter.PDESOCUP / rowIter.PEA * 100).toFixed(2)}%`,
                     `${(rowIter.PSINDER / rowIter.POBTOT * 100).toFixed(2)}%`
                 ];

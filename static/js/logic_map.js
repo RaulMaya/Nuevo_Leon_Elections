@@ -1,12 +1,17 @@
+
+
+
+
+
 // Pending: colorscale red -> green
 function getColor(d) {
   return d > 0.41 ? '#ff0000' :
-    d > 0.39 ? '#ffc100' :
-      d > 0.37 ? '#ffff00' :
-        d > 0.35 ? '#d6ff00' :
-          d > 0.33 ? '#63ff00' :
-            d > 0.31 ? '#FED976' :
-              '#FFEDA0';
+    d > 0.39 ? '#ff0000' :
+      d > 0.37 ? '#ffc100' :
+        d > 0.35 ? '#ffff00' :
+          d > 0.33 ? '#d6ff00' :
+            d > 0.31 ? '#63ff00' :
+            '#4fcc00';
 }
 
 
