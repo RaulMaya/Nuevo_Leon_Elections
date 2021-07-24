@@ -14,11 +14,11 @@
 body {
   padding: 0;
   margin: 0;
-  background-color: white;
+  background-color: #F0F0F0;
 }
 
 .info-bar {
-  background-color: lightblue;
+  background-color: white;
 }
 
 /* set chart style */
