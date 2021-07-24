@@ -167,7 +167,7 @@ d3.json(coordinates).then(function (info) {
 
         statusCounter[samuelStatus]++;
 
-        var newMarker = L.marker([samuelData[i].Latitud, samuelData[i].Longitud], {
+        var newMarker = L.marker([samuelData[i].Latitud, samuelData[i].Longitud+0.025], {
           icon: icons[samuelStatus]
         });
 
