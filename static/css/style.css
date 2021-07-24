@@ -14,12 +14,14 @@
 body {
   padding: 0;
   margin: 0;
-  background-color: #F0F0F0;
+  background-color: #F5F5F5;
 }
 
+/*
 .info-bar {
   background-color: white;
 }
+*/
 
 /* set chart style */
 .chart-container {
