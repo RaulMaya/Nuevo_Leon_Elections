@@ -42,6 +42,7 @@ function renderInfo(id_municipio) {
                     .enter()
                     .append('td')
                     .classed('text-center', true)
+                    .append('small')
                     .text(function (d) {
                         return d;
                     });
@@ -79,7 +80,7 @@ function renderChartJS(x, y, year) {
             maintainAspectRatio: false,
             scales: { y: { grid: { display: false } } },
             plugins: {
-                title: { display: true, text: year, align: "center", font: { size: 20 } },
+                title: { display: true, text: year, align: "center", font: { size: 17 } },
                 legend: { display: false }
             }
         }
@@ -123,7 +124,7 @@ function renderBarJS(partMunicipio, partNL, year) {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-                title: { display: true, text: text, align: "end", font: { size: 16 } },
+                title: { display: true, text: text, align: "end", font: { size: 13 } },
                 legend: { display: false }
             },
             scales: { x: { min: 0, max: 100 }, grid: { display: false } },

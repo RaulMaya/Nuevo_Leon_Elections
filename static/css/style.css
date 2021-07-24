@@ -17,21 +17,15 @@ body {
   background-color: #F5F5F5;
 }
 
-/*
-.info-bar {
-  background-color: white;
-}
-*/
-
 /* set chart style */
 .chart-container {
-  height: 175px;
+  height: 157px;
   width: 100%;
 }
 
 /* set bar style */
 .bar-container {
-  height: 95px;
+  height: 80px;
   width: 100%;
 }
 
@@ -40,7 +34,7 @@ body {
   position: relative;
   border: 1px solid black;
   border-radius: 5px;
-  height: 840px;
+  height: 700px;
   width: 100%; 
 }
 
