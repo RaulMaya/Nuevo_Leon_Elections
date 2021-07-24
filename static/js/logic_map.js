@@ -1,13 +1,4 @@
-// function getColor(d) {
-//     return d > 0.41  ? '#800026' :
-//            d > 0.39  ? '#BD0026' :
-//            d > 0.37  ? '#E31A1C' :
-//            d > 0.35 ? '#FC4E2A' :
-//            d > 0.33 ? '#FD8D3C' :
-//            d > 0.31  ? '#FED976' :
-//                       '#FFEDA0';
-//   }
-
+// Pending: colorscale red -> green
 function getColor(d) {
   return d > 0.41 ? '#ff0000' :
     d > 0.39 ? '#ffc100' :
@@ -20,19 +11,11 @@ function getColor(d) {
 
 
 var iter = "../../A_ETL_Process/output/iter_1920r.js"
-
 var nlMunicipality = "../../D_Maps/static/data/nyu_geojson.json"
-
 var ginis = "../../A_ETL_Process/output/dataframe_merged_apisr.js"
-
 var samuel = "../../A_ETL_Process/output/resultados_g2021.json"
-
 var bronco = "../../A_ETL_Process/output/resultados_g2015.json"
-
 var coordinates = "../../A_ETL_Process/output/coordinatesr.js"
-
-
-
 
 var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
   attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
@@ -78,27 +61,23 @@ var layers = {
 };
 
 var baseMaps = {
-  "Satellite": satellitemap,
-  "Outdoor": outdoormap,
-  "Light": lightmap,
-  "Dark": darkmap
+  // "Satellite": satellitemap,
+  // "Outdoor": outdoormap,
+  "Map": lightmap,
+  // "Dark": darkmap
 };
 
 var myMap = L.map("map", {
   center: [25.54, -99.93],
-  zoom: 7,
-  layers: [lightmap,
-  layers.gano_bronco,
-layers.perdio_bronco,
-layers.gano_samuel,
-layers.perdio_samuel]
+  zoom: 8,
+  layers: [lightmap]
 });
 
 var overlays = {
   "Gano Partido Independiente": layers.gano_bronco,
-  "Perdio Partido Independiente": layers.perdio_bronco,
+  // "Perdio Partido Independiente": layers.perdio_bronco,
   "Gano Partido Movimiento Ciudadano": layers.gano_samuel,
-  "Perdio Partido Movimiento Ciudadano": layers.perdio_samuel
+  // "Perdio Partido Movimiento Ciudadano": layers.perdio_samuel
 };
 
 L.control.layers(baseMaps, overlays).addTo(myMap);
@@ -143,7 +122,7 @@ d3.json(coordinates).then(function (info) {
 
     lat.push(location.LATITUD)
     lon.push(location.LONGITUD)
-   
+
   };
   console.log(lat)
   console.log(lon)
@@ -156,72 +135,72 @@ d3.json(coordinates).then(function (info) {
       broncoData[i].Longitud = lon[i]
     };
     console.log(broncoData)
-  
 
-  d3.json(samuel).then(function (samuelData) {
 
-    for (let i = 0; i < samuelData.length; i++) {
-      samuelData[i].Latitud = lat[i]
-      samuelData[i].Longitud = lon[i]
-    };
-    console.log(samuelData)
+    d3.json(samuel).then(function (samuelData) {
 
-    var statusCounter = {
-      gano_bronco: 0,
-      perdio_bronco: 0,
-      gano_samuel: 0,
-      perdio_samuel: 0,
-    };
+      for (let i = 0; i < samuelData.length; i++) {
+        samuelData[i].Latitud = lat[i]
+        samuelData[i].Longitud = lon[i]
+      };
+      console.log(samuelData)
 
-    var samuelStatus;
+      var statusCounter = {
+        gano_bronco: 0,
+        perdio_bronco: 0,
+        gano_samuel: 0,
+        perdio_samuel: 0,
+      };
 
-    for (var i = 0; i < samuelData.length; i++) {
-      var municipioS = samuelData[i].Ganador
-    
-      if (municipioS === "MC") {
-        samuelStatus = "gano_samuel"
-      }
-    
-      else {
-        samuelStatus = "perdio_samuel"
-      }
+      var samuelStatus;
 
-      statusCounter[samuelStatus]++;
+      for (var i = 0; i < samuelData.length; i++) {
+        var municipioS = samuelData[i].Ganador
 
-      var newMarker = L.marker([samuelData[i].Latitud, samuelData[i].Longitud], {
-        icon: icons[samuelStatus]
-      });
-    
-      newMarker.addTo(layers[samuelStatus]);
-      newMarker.bindPopup(samuelData[i].Municipio);
-  };
- 
+        if (municipioS === "MC") {
+          samuelStatus = "gano_samuel"
+        }
 
-  var broncoStatus;
+        else {
+          samuelStatus = "perdio_samuel"
+        }
 
-    for (var i = 0; i < broncoData.length; i++) {
-      var municipioB = broncoData[i].Ganador
+        statusCounter[samuelStatus]++;
 
-      if (municipioB === "IND") {
-        broncoStatus = "gano_bronco"
-      }
+        var newMarker = L.marker([samuelData[i].Latitud, samuelData[i].Longitud], {
+          icon: icons[samuelStatus]
+        });
 
-      else {
-        broncoStatus = "perdio_bronco"
-      }
+        newMarker.addTo(layers[samuelStatus]);
+        newMarker.bindPopup(samuelData[i].Municipio);
+      };
 
-      statusCounter[broncoStatus]++;
 
-      var newMarker = L.marker([broncoData[i].Latitud, broncoData[i].Longitud], {
-        icon: icons[broncoStatus]
-      });
-    
-      newMarker.addTo(layers[broncoStatus]);
-      newMarker.bindPopup(broncoData[i].Municipio);
-};
+      var broncoStatus;
 
-});
-});
+      for (var i = 0; i < broncoData.length; i++) {
+        var municipioB = broncoData[i].Ganador
+
+        if (municipioB === "IND") {
+          broncoStatus = "gano_bronco"
+        }
+
+        else {
+          broncoStatus = "perdio_bronco"
+        }
+
+        statusCounter[broncoStatus]++;
+
+        var newMarker = L.marker([broncoData[i].Latitud, broncoData[i].Longitud], {
+          icon: icons[broncoStatus]
+        });
+
+        newMarker.addTo(layers[broncoStatus]);
+        newMarker.bindPopup(broncoData[i].Municipio);
+      };
+
+    });
+  });
 });
 
 d3.json(nlMunicipality).then(function (data) {
@@ -306,27 +285,7 @@ d3.json(nlMunicipality).then(function (data) {
               });
             },
             click: mapChange
-            // function (event) {
-            //   // myMap.fitBounds(event.target.getBounds())
-            //   demographicInfo.html("");
-            //   demographicInfo.append("p").text(`Municipio: ${feature.properties.nomgeo}`);
-            //   demographicInfo.append("p").text(`Gini: ${feature.Gini}`);
-            //   demographicInfo.append("p").text(`Población Total: ${feature.Population}`);
-            //   demographicInfo.append("p").text(`Grado Promedio de Escolaridad: ${feature.Scholarship}`);
-            //   demographicInfo.append("p").text(`Población Economicamente Activa: ${feature.EconomicallyActive}`);
-            //   demographicInfo.append("p").text(`Población Desocupada: ${feature.Unemployment}`);
-            //   demographicInfo.append("p").text(`Población sin Afiliación a Servicios de Salud: ${feature.LackOfHS}`);
-            // console.log("Id Municipio:", feature.properties.cvegeo);
-            // }
-
           });
-          layer.bindPopup(`<p><b><u>${feature.properties.nomgeo}</b></u></p><hr>
-        <h2><b><u>Gini:</u></b> ${feature.Gini}</h2><br>
-        <h2><b><u>ID de Municipio:</u></b> ${feature.properties.cve_mun}</h2><br>
-        <h2><b><u>Estado:</u></b> Nuevo León</h2>`);
-
-
-
         }
       }).addTo(myMap);
 
@@ -356,15 +315,3 @@ d3.json(nlMunicipality).then(function (data) {
   });
 });
 
-
-function tableGenerator(selectedID) {
-
-  demographicInfo.html("");
-  demographicInfo.append("p").text(`Municipio: ${feature.properties.nomgeo}`);
-  demographicInfo.append("p").text(`Gini: ${feature.Gini}`);
-  demographicInfo.append("p").text(`Población Total: ${feature.Population}`);
-  demographicInfo.append("p").text(`Grado Promedio de Escolaridad: ${feature.Scholarship}`);
-  demographicInfo.append("p").text(`Población Economicamente Activa: ${feature.EconomicallyActive}`);
-  demographicInfo.append("p").text(`Población Desocupada: ${feature.Unemployment}`);
-  demographicInfo.append("p").text(`Población sin Afiliación a Servicios de Salud: ${feature.LackOfHS}`);
-}

@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
+@keyframes animate {
+  100%{
+    background-position: 400%;
+  }
+}
+
 *{
   font-family: 'Poppins', sans-serif;
 }
@@ -8,23 +14,32 @@
 body {
   padding: 0;
   margin: 0;
+  background-color: white;
 }
 
-/* set map, body, and html to 100% of the screen size */
+.info-bar {
+  background-color: lightblue;
+}
+
+/* set chart style */
+.chart-container {
+  height: 175px;
+  width: 100%;
+}
+
+/* set bar style */
+.bar-container {
+  height: 95px;
+  width: 100%;
+}
+
+/* set map style */
 #map {
   position: relative;
   border: 1px solid black;
-  border-radius: 8px;
+  border-radius: 5px;
   height: 840px;
   width: 100%; 
-  }
-
-.slide {
-    margin-top: 10px;
-}
-
-.slide img {
-    height: 65;
 }
 
 .legend {
@@ -63,7 +78,6 @@ font-weight: 800;
 font-size:16mm;
 text-transform: uppercase;
 line-height:90%;
-
 border: 0px rgba(255, 255, 255, 0);
 box-shadow: 0 0px 0px rgba(0,0,0,0);
 /* background: linear-gradient(45deg,#00BFFF 0%, #0072ff 25%, #0E61D1 50%, #1432BA 75%, #00BFFF 100%); */
@@ -72,32 +86,20 @@ background-size: 400%;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 animation: animate 10s linear infinite;
-
 -webkit-user-select: none;
 -moz-user-select: none;
 -ms-user-select: none;
 user-select: none;
 pointer-events: none;
-
-
 width: 4 em;
 height: auto;
 white-space: normal;
-
-}
-
-
-@keyframes animate {
-  100%{
-    background-position: 400%;
-  }
 }
 
 .leaflet-tooltip-2 {
   font-weight: 700;  
   font-size:5mm;
   line-height:100%;
-
   border: 0px rgba(255, 255, 255, 0);
   box-shadow: 0 0px 0px rgba(0,0,0,0);
   color: #fff;
@@ -107,7 +109,5 @@ white-space: normal;
   -ms-user-select: none;
   user-select: none;
   pointer-events: none;
-
-
   width: 12em;
   }

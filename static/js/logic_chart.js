@@ -12,7 +12,7 @@ var link_gini = "../../A_ETL_Process/output/dataframe_merged_apisr.js";
 var link_sup = "../../A_ETL_Process/output/superficie_NL.json";
 
 // SELECT HTML ELEMENTS
-var demographicInfo = d3.select("#election-results");
+var demographicInfo = d3.select("#info-row");
 
 // RENDER RESULTS FUNCTION
 function renderInfo(id_municipio) {
@@ -27,16 +27,24 @@ function renderInfo(id_municipio) {
                 var poblacionNL = iter_data.map(d => d.POBTOT);
                 var pobNL = math.add(...poblacionNL);
 
-                demographicInfo.html("")
-                    .append('h2').text(`${rowSup.Municipio}`)
-                    .append('h5').text(`Gini: ${rowGini.GINI.toFixed(2)}`)
-                    .append('h5').text(`Población: ${rowIter.POBTOT} hab (${(rowIter.POBTOT / pobNL * 100).toFixed(2)}% NL)`)
-                    // .append('h5').text(`NL: ${(rowIter.POBTOT / pobNL * 100).toFixed(2)} %`)
-                    .append('h5').text(`Densidad: ${(rowIter.POBTOT / rowSup.Superficie).toFixed(1)} hab/km2`)
-                    .append('h5').text(`Escolaridad: ${parseFloat(rowIter.GRAPROES).toFixed(1)} años`)
-                    .append('h5').text(`Desempleo: ${(rowIter.PDESOCUP / rowIter.PEA * 100).toFixed(2)}%`)
-                    .append('h5').text(`Sin Serv. Salud: ${(rowIter.PSINDER / rowIter.POBTOT * 100).toFixed(2)}%`);
+                var info = [
+                    rowSup.Municipio,
+                    rowGini.GINI.toFixed(2),
+                    `${rowIter.POBTOT} hab (${(rowIter.POBTOT / pobNL * 100).toFixed(2)}% NL)`,
+                    `${(rowIter.POBTOT / rowSup.Superficie).toFixed(1)} hab/km2`,
+                    `${parseFloat(rowIter.GRAPROES).toFixed(1)} años`,
+                    `${(rowIter.PDESOCUP / rowIter.PEA * 100).toFixed(2)}%`,
+                    `${(rowIter.PSINDER / rowIter.POBTOT * 100).toFixed(2)}%`
+                ];
 
+                demographicInfo.html("").selectAll('td')
+                    .data(info)
+                    .enter()
+                    .append('td')
+                    .classed('text-center', true)
+                    .text(function (d) {
+                        return d;
+                    });
                 //         .style('font-size', '11.5px')
                 //         .style('font-weight', 'bold');
 
@@ -55,7 +63,7 @@ function renderChartJS(x, y, year) {
     var chart2018 = document.getElementById("chart-2018").getContext('2d');
     var chart2021 = document.getElementById("chart-2021").getContext('2d');
 
-    // Pending: Set animation parameters
+    // Set chart parameters
     params = {
         type: 'bar',
         data: {
@@ -67,19 +75,19 @@ function renderChartJS(x, y, year) {
         },
         options: {
             indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: { y: { grid: { display: false } } },
             plugins: {
-                title: { display: true, text: year, font: { size: 25 } },
+                title: { display: true, text: year, align: "center", font: { size: 20 } },
                 legend: { display: false }
             }
         }
     }
-
     if (year === 2015) { results2015 = new Chart(chart2015, params); }
     else if (year === 2018) { results2018 = new Chart(chart2018, params); }
     else if (year === 2021) { results2021 = new Chart(chart2021, params); }
-
 }
-
 
 // RENDER BAR.JS FUNCTION
 function renderBarJS(partMunicipio, partNL, year) {
@@ -88,11 +96,11 @@ function renderBarJS(partMunicipio, partNL, year) {
     var bar2018 = document.getElementById("bar-2018").getContext('2d');
     var bar2021 = document.getElementById("bar-2021").getContext('2d');
 
-    if (year === 2015) { text = "%  Participación Ciudadana" }
+    if (year === 2015) { text = "%  Voters Turnout" }
     else if (year === 2018) { text = ""; }
-    else if (year === 2021) { text = "|  Promedio NL"; }
+    else if (year === 2021) { text = "|  NL Mean"; }
 
-    // Pending: Set animation parameters
+    // Set bar parameters
     params = {
         data: {
             labels: ['', '%', ''],
@@ -112,22 +120,21 @@ function renderBarJS(partMunicipio, partNL, year) {
         },
         options: {
             indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
             plugins: {
-                title: { display: true, text: text, font: { size: 15 } },
+                title: { display: true, text: text, align: "end", font: { size: 16 } },
                 legend: { display: false }
             },
-            scales: { x: { min: 0, max: 100 } },
+            scales: { x: { min: 0, max: 100 }, grid: { display: false } },
             layout: { padding: { left: 55 } },
             animation: false
         }
     }
-
     if (year === 2015) { part2015 = new Chart(bar2015, params); }
     else if (year === 2018) { part2018 = new Chart(bar2018, params); }
     else if (year === 2021) { part2021 = new Chart(bar2021, params); }
-
 }
-
 
 // RUN YEAR FUNCTION
 function runYear(id_municipio, year) {
@@ -151,12 +158,6 @@ function runYear(id_municipio, year) {
         var partMunicipio = rowMunicipio.Total / rowMunicipio.LNominal * 100;
 
         renderBarJS(partMunicipio, partNL, year);
-
-        // console.log("Participación:", partNL, partMunicipio);
-        // console.log("Municipio:", rowMunicipio.Municipio);
-        // console.log("Año:", year);
-        // console.log("X:", x);
-        // console.log("Y:", y);
 
     });
 }
@@ -195,38 +196,4 @@ function optionChange(selectedID) {
     part2021.destroy();
 
     runEnter(selectedID);
-
 }
-
-
-// // CHANGE OPTION FUNCTION
-// function optionChanged() {
-//     var selectedID = parseInt(dropdown.property('value'));
-//     console.log("Selected:", selectedID);
-
-//     results2015.destroy();
-//     results2018.destroy();
-//     results2021.destroy();
-
-//     part2015.destroy();
-//     part2018.destroy();
-//     part2021.destroy();
-
-//     runEnter(selectedID);
-
-// }
-
-// Pending: Delete debug MSGs
-
-// function tableGenerator(e) {
-
-//     demographicInfo.html("");
-//     demographicInfo.append("p").text(`Municipio: ${e.target.feature.properties.nomgeo}`);
-//     demographicInfo.append("p").text(`Gini: ${e.target.feature.Gini}`);
-//     demographicInfo.append("p").text(`Población Total: ${e.target.feature.Population}`);
-//     demographicInfo.append("p").text(`Grado Promedio de Escolaridad: ${e.target.feature.Scholarship}`);
-//     demographicInfo.append("p").text(`Población Economicamente Activa: ${e.target.feature.EconomicallyActive / e.target.feature.Population * 100}%`);
-//     // demographicInfo.append("p").text(`Población Desocupada: ${e.target.feature.Unemployment / (e.target.feature.EconomicallyActive+e.target.feature.Unemployment)*100}%`);
-//     demographicInfo.append("p").text(`Población sin Afiliación a Servicios de Salud: ${e.target.feature.LackOfHS / e.target.feature.Population * 100}%`);
-
-// }
