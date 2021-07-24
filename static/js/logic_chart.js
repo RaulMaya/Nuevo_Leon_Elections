@@ -108,7 +108,7 @@ function renderBarJS(partMunicipio, partNL, year) {
                 type: 'bar',
                 data: [0, partMunicipio, 0],
                 backgroundColor: "yellow",
-                barThickness: 15,
+                barThickness: 8,
                 order: 1,
             }, {
                 type: 'line',
