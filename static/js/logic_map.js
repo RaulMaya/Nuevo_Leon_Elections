@@ -8,21 +8,21 @@ function getColor(d) {
             '#4fcc00';
 }
 
-// FLASK API FEED
+// // FLASK API FEED
 var iter = "http://127.0.0.1:5000/api/iter";
-var ginis = "http://127.0.0.1:5000/api/gini";
-var samuel = "http://127.0.0.1:5000/api/g2015";
-var bronco = "http://127.0.0.1:5000/api/g2021";
 var nlMunicipality = "http://127.0.0.1:5000/api/NL_geojson";
+var ginis = "http://127.0.0.1:5000/api/gini";
+var bronco = "http://127.0.0.1:5000/api/g2015";
+var samuel = "http://127.0.0.1:5000/api/g2021";
 var coordinates = "http://127.0.0.1:5000/api/coordinates";
 
 // LOCAL FEED
-// var iter = "../../A_ETL_Process/output/iter_1920r.js"
-// var nlMunicipality = "../../D_Maps/static/data/nyu_geojson.json"
-// var ginis = "../../A_ETL_Process/output/dataframe_merged_apisr.js"
-// var samuel = "../../A_ETL_Process/output/resultados_g2021.json"
-// var bronco = "../../A_ETL_Process/output/resultados_g2015.json"
-// var coordinates = "../../A_ETL_Process/output/coordinatesr.js"
+// var iter = "../../A_ETL_Process/output/iter_1920r.js";
+// var nlMunicipality = "../../D_Maps/static/data/nyu_geojson.json";
+// var ginis = "../../A_ETL_Process/output/dataframe_merged_apisr.js";
+// var samuel = "../../A_ETL_Process/output/resultados_g2021.json";
+// var bronco = "../../A_ETL_Process/output/resultados_g2015.json";
+// var coordinates = "../../A_ETL_Process/output/coordinatesr.js";
 
 
 var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
@@ -213,7 +213,7 @@ d3.json(coordinates).then(function (info) {
 
 d3.json(nlMunicipality).then(function (data) {
   var json_data = data;
-  console.log("GeoJSON:", data)
+  // console.log("GeoJSON:", data)
   // console.log(data.features.length);
   // console.log();
   // console.log(data);
