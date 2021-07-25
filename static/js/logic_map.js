@@ -84,7 +84,7 @@ L.control.layers(baseMaps, overlays).addTo(myMap);
 
 var icons = {
   gano_bronco: L.ExtraMarkers.icon({
-    icon: "ion-settings",
+    icon: "ion-pin",
     iconColor: "white",
     markerColor: "green",
     shape: "circle"
@@ -96,7 +96,7 @@ var icons = {
     shape: "circle"
   }),
   gano_samuel: L.ExtraMarkers.icon({
-    icon: "ion-chevron-right",
+    icon: "ion-pin",
     iconColor: "white",
     markerColor: "blue",
     shape: "circle"
