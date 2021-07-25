@@ -3,13 +3,22 @@ var defaultID = 19001;
 
 // ENDPOINTS
 var link;
-var link_id = "../../A_ETL_Process/output/id_municipios.json";
-var link_a2015 = "../../A_ETL_Process/output/resultados_a2015.json";
-var link_a2018 = "../../A_ETL_Process/output/resultados_a2018.json";
-var link_a2021 = "../../A_ETL_Process/output/resultados_a2021.json";
-var link_iter = "../../A_ETL_Process/output/iter_1920r.js";
-var link_gini = "../../A_ETL_Process/output/dataframe_merged_apisr.js";
-var link_sup = "../../A_ETL_Process/output/superficie_NL.json";
+
+// FLASK API FEED
+var link_iter = "http://127.0.0.1:5000/api/iter";
+var link_gini = "http://127.0.0.1:5000/api/gini";
+var link_sup = "http://127.0.0.1:5000/api/superficie_NL";
+var link_a2015 = "http://127.0.0.1:5000/api/a2015";
+var link_a2018 = "http://127.0.0.1:5000/api/a2018";
+var link_a2021 = "http://127.0.0.1:5000/api/a2021";
+
+// LOCAL FEED
+// var link_sup = "../../A_ETL_Process/output/superficie_NL.json";
+// var link_a2015 = "../../A_ETL_Process/output/resultados_a2015.json";
+// var link_a2018 = "../../A_ETL_Process/output/resultados_a2018.json";
+// var link_a2021 = "../../A_ETL_Process/output/resultados_a2021.json";
+// var link_iter = "../../A_ETL_Process/output/iter_1920r.js";
+// var link_gini = "../../A_ETL_Process/output/dataframe_merged_apisr.js";
 
 // SELECT HTML ELEMENTS
 var demographicInfo = d3.select("#info-row");
@@ -186,7 +195,7 @@ var mapChange = (e) => {
 // OPTION CHANGE FUNCTION
 function optionChange(selectedID) {
 
-    console.log(selectedID);
+    console.log("Selected ID:", selectedID);
 
     results2015.destroy();
     results2018.destroy();
