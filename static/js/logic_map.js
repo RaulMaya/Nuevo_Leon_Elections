@@ -1,4 +1,3 @@
-// Pending: colorscale red -> green
 function getColor(d) {
   return d > 0.41 ? '#ff0000' :
     d > 0.39 ? '#ff0000' :
@@ -9,13 +8,22 @@ function getColor(d) {
             '#4fcc00';
 }
 
+// FLASK API FEED
+var iter = "http://127.0.0.1:5000/api/iter";
+var ginis = "http://127.0.0.1:5000/api/gini";
+var samuel = "http://127.0.0.1:5000/api/g2015";
+var bronco = "http://127.0.0.1:5000/api/g2021";
+var nlMunicipality = "http://127.0.0.1:5000/api/NL_geojson";
+var coordinates = "http://127.0.0.1:5000/api/coordinates";
 
-var iter = "../../A_ETL_Process/output/iter_1920r.js"
-var nlMunicipality = "../../D_Maps/static/data/nyu_geojson.json"
-var ginis = "../../A_ETL_Process/output/dataframe_merged_apisr.js"
-var samuel = "../../A_ETL_Process/output/resultados_g2021.json"
-var bronco = "../../A_ETL_Process/output/resultados_g2015.json"
-var coordinates = "../../A_ETL_Process/output/coordinatesr.js"
+// LOCAL FEED
+// var iter = "../../A_ETL_Process/output/iter_1920r.js"
+// var nlMunicipality = "../../D_Maps/static/data/nyu_geojson.json"
+// var ginis = "../../A_ETL_Process/output/dataframe_merged_apisr.js"
+// var samuel = "../../A_ETL_Process/output/resultados_g2021.json"
+// var bronco = "../../A_ETL_Process/output/resultados_g2015.json"
+// var coordinates = "../../A_ETL_Process/output/coordinatesr.js"
+
 
 var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
   attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
@@ -113,7 +121,7 @@ var lat = []
 var lon = []
 
 d3.json(coordinates).then(function (info) {
-  console.log(info)
+  // console.log(info)
   var lat = []
   var lon = []
 
@@ -124,8 +132,8 @@ d3.json(coordinates).then(function (info) {
     lon.push(location.LONGITUD)
 
   };
-  console.log(lat)
-  console.log(lon)
+  // console.log(lat)
+  // console.log(lon)
 
   d3.json(bronco).then(function (broncoData) {
 
@@ -134,7 +142,7 @@ d3.json(coordinates).then(function (info) {
       broncoData[i].Latitud = lat[i]
       broncoData[i].Longitud = lon[i]
     };
-    console.log(broncoData)
+    // console.log(broncoData)
 
 
     d3.json(samuel).then(function (samuelData) {
@@ -143,7 +151,7 @@ d3.json(coordinates).then(function (info) {
         samuelData[i].Latitud = lat[i]
         samuelData[i].Longitud = lon[i]
       };
-      console.log(samuelData)
+      // console.log(samuelData)
 
       var statusCounter = {
         gano_bronco: 0,
@@ -204,17 +212,18 @@ d3.json(coordinates).then(function (info) {
 });
 
 d3.json(nlMunicipality).then(function (data) {
-  var json_data = data
-  console.log(data.features.length);
-  console.log();
-  console.log(data);
+  var json_data = data;
+  console.log("GeoJSON:", data)
+  // console.log(data.features.length);
+  // console.log();
+  // console.log(data);
 
   d3.json(ginis).then(function (feature) {
     var gini_object = feature
-    console.log(gini_object)
+    // console.log(gini_object)
 
     d3.json(iter).then(function (iData) {
-      console.log(iData)
+      // console.log(iData)
 
       population = []
       scholarship = []
@@ -232,7 +241,7 @@ d3.json(nlMunicipality).then(function (data) {
         lack_health_service.push(iterData.PSINDER)
       };
 
-      console.log(population)
+      // console.log(population)
 
       gini_list = []
 
@@ -240,7 +249,7 @@ d3.json(nlMunicipality).then(function (data) {
         var g = gini_object[i].GINI;
         gini_list.push(g)
       };
-      console.log(gini_list)
+      // console.log(gini_list)
 
 
       for (let i = 0; i < data.features.length; i++) {
@@ -253,7 +262,7 @@ d3.json(nlMunicipality).then(function (data) {
         json_data.features[i].Unemployment = unemployed[num]
         json_data.features[i].LackOfHS = lack_health_service[num]
       };
-      console.log(json_data)
+      // console.log(json_data)
 
 
       L.geoJson(json_data, {
