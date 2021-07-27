@@ -1,6 +1,8 @@
 # Elections_Project
 ### Electoral Analysis of Nuevo León
 
+![Screenshot](resources/images/Screenshot.png)
+
 ### Contributors
 
 + Pablo Villalpando
