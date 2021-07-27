@@ -37,7 +37,7 @@ https://docs.google.com/document/d/1PTsk3bbKGaR3K514hCuUtOojC-BtaWy3CoEWIORVozA/
 ### Instructions
 1. Run `$ python a_loadDatabase.py` to load files into MongoDB
 2. Execute `$ python b_runFlask.py` to enable API
-3. Open [index.html](index.html)
+3. Open `index.html`
 
 ### Recommendations
 + Use Google Chrome for better performance
