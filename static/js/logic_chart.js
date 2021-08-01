@@ -3,13 +3,22 @@ var defaultID = 19001;
 
 // ENDPOINTS
 var link;
-var link_id = "../../A_ETL_Process/output/id_municipios.json";
-var link_a2015 = "../../A_ETL_Process/output/resultados_a2015.json";
-var link_a2018 = "../../A_ETL_Process/output/resultados_a2018.json";
-var link_a2021 = "../../A_ETL_Process/output/resultados_a2021.json";
-var link_iter = "../../A_ETL_Process/output/iter_1920r.js";
-var link_gini = "../../A_ETL_Process/output/dataframe_merged_apisr.js";
-var link_sup = "../../A_ETL_Process/output/superficie_NL.json";
+
+// FLASK API FEED
+var link_iter = "http://127.0.0.1:5000/api/iter";
+var link_gini = "http://127.0.0.1:5000/api/gini";
+var link_sup = "http://127.0.0.1:5000/api/superficie_NL";
+var link_a2015 = "http://127.0.0.1:5000/api/a2015";
+var link_a2018 = "http://127.0.0.1:5000/api/a2018";
+var link_a2021 = "http://127.0.0.1:5000/api/a2021";
+
+// LOCAL FEED
+// var link_iter = "../../A_ETL_Process/output/iter_1920r.js";
+// var link_gini = "../../A_ETL_Process/output/dataframe_merged_apisr.js";
+// var link_sup = "../../A_ETL_Process/output/superficie_NL.json";
+// var link_a2015 = "../../A_ETL_Process/output/resultados_a2015.json";
+// var link_a2018 = "../../A_ETL_Process/output/resultados_a2018.json";
+// var link_a2021 = "../../A_ETL_Process/output/resultados_a2021.json";
 
 // SELECT HTML ELEMENTS
 var demographicInfo = d3.select("#info-row");
@@ -24,9 +33,10 @@ function renderInfo(id_municipio) {
                 var rowIter = iter_data.find((d) => d.ID === id_municipio);
                 var rowGini = gini_data.find((d) => d.ID === id_municipio);
                 var rowSup = sup_data.find((d) => d.ID === id_municipio);
-                var poblacionNL = iter_data.map(d => d.POBTOT);
-                var pobNL = math.add(...poblacionNL);
 
+                var pobNL = 0;
+                iter_data.forEach((d) => pobNL += d.POBTOT);
+                
                 var info = [
                     rowSup.Municipio,
                     rowGini.GINI.toFixed(2),
@@ -46,9 +56,6 @@ function renderInfo(id_municipio) {
                     .text(function (d) {
                         return d;
                     });
-                //         .style('font-size', '11.5px')
-                //         .style('font-weight', 'bold');
-
             });
         });
     });
@@ -56,9 +63,14 @@ function renderInfo(id_municipio) {
 
 // RENDER CHART.JS FUNCTION
 function renderChartJS(x, y, year) {
-
-    // Pending: choose pretty colors & alpha
-    var color = ['blue', 'red', 'orange', 'brown', 'gray'];
+    
+    var color = [
+        'rgba(0,0,255,0.7)',
+        'rgba(255,0,0,0.7)',
+        'rgba(255,165,0,0.7)',
+        'rgba(165,42,42,0.7)',
+        'rgba(145,145,145,0.7)',
+        ];
 
     var chart2015 = document.getElementById("chart-2015").getContext('2d');
     var chart2018 = document.getElementById("chart-2018").getContext('2d');
@@ -71,7 +83,11 @@ function renderChartJS(x, y, year) {
             labels: y,
             datasets: [{
                 data: x,
-                backgroundColor: color
+                backgroundColor: color,
+                borderWidth: 0.7,
+                borderColor: 'rgba(170,170,170,1)',
+                hoverBorderWidth: 0.7,
+                hoverBorderColor: 'rgba(0,0,0,1)'
             }],
         },
         options: {
@@ -108,15 +124,19 @@ function renderBarJS(partMunicipio, partNL, year) {
             datasets: [{
                 type: 'bar',
                 data: [0, partMunicipio, 0],
-                backgroundColor: "yellow",
-                barThickness: 8,
-                order: 1,
+                backgroundColor: 'rgba(255,255,0,0.7)',
+                borderWidth: 0.5,
+                borderColor: 'rgba(170,170,170,1)',
+                hoverBorderWidth: 0.5,
+                hoverBorderColor: 'rgba(0,0,0,1)',
+                barThickness: 7,
+                order: 1
             }, {
                 type: 'line',
                 data: [partNL, partNL, partNL],
-                borderColor: "black",
+                borderColor: 'rgba(0,0,0,1)',
                 pointRadius: 0,
-                order: 0,
+                order: 0
             }],
         },
         options: {
@@ -153,9 +173,11 @@ function runYear(id_municipio, year) {
 
         renderChartJS(x, y, year)
 
-        var totalVotos = year_data.map(d => d.Total);
-        var listaNominal = year_data.map(d => d.LNominal);
-        var partNL = math.add(...totalVotos) / math.add(...listaNominal) * 100;
+        var totalVotos = 0;
+        var listaNominal = 0;
+        year_data.forEach((d) => { totalVotos += d.Total; listaNominal += d.LNominal; });
+
+        var partNL = totalVotos / listaNominal * 100;
         var partMunicipio = rowMunicipio.Total / rowMunicipio.LNominal * 100;
 
         renderBarJS(partMunicipio, partNL, year);
@@ -186,7 +208,7 @@ var mapChange = (e) => {
 // OPTION CHANGE FUNCTION
 function optionChange(selectedID) {
 
-    console.log(selectedID);
+    console.log("Selected ID:", selectedID);
 
     results2015.destroy();
     results2018.destroy();

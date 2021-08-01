@@ -1,6 +1,8 @@
 # Elections_Project
 ### Electoral Analysis of Nuevo León
 
+![Screenshot](resources/images/Screenshot.png)
+
 ### Contributors
 
 + Pablo Villalpando
@@ -22,13 +24,24 @@ https://docs.google.com/document/d/1PTsk3bbKGaR3K514hCuUtOojC-BtaWy3CoEWIORVozA/
 + Comisión Estatal Electoral de Nuevo León (CEENL)
 + Censo de Población y Vivienda 2020 (INEGI)
 + DataMÉXICO
++ UC Berkeley GeoData Repository
 
 ### Visualization Inspiration
 
-| Dashboard |
+| Election Results Dashboard |
 | --- |
 | ![Dashboard](resources/images/Dashboard.png) |
 
-| Radar Chart | Choropleth Map |
-| --- | --- |
-| ![Radar](resources/images/Radar.png) | ![Desigualdad](resources/images/Desigualdad.png) |
+| Choropleth Map |
+| --- |
+| ![Desigualdad](resources/images/Desigualdad.png) |
+
+### Instructions
+1. Run `$ python a_loadDatabase.py` to load files into MongoDB
+2. Execute `$ python b_runFlask.py` to enable API
+3. Open `index.html`
+
+### Recommendations
++ Use Google Chrome for better performance
++ Set zoom level to 100%
++ Press F11 for fullscreen experience
