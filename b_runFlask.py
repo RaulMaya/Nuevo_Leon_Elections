@@ -4,7 +4,7 @@
 ## Dependencies
 import pymongo
 from bson.json_util import dumps, loads
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from flask_cors import CORS, cross_origin
 
 ## Database Setup (MongoDB)
@@ -19,21 +19,15 @@ app = Flask(__name__)
 ## Homepage
 @app.route("/")
 def home():
-    """Homepage"""
-    return (
-        f"NL Elections API<br/><br/>"
-        f"Available Routes:<br/>"
-        f"/api/iter<br/>"
-        f"/api/gini<br/>"
-        f"/api/superficie_NL<br/>"
-        f"/api/a2015<br/>"
-        f"/api/a2018<br/>"
-        f"/api/a2021<br/>"
-        f"/api/g2015<br/>"
-        f"/api/g2021<br/>"
-        f"/api/NL_geojson<br/>"
-        f"/api/coordinates<br/>"
-    )
+
+    return render_template("/index.html")
+
+
+@app.route("/index.html")
+def index():
+
+    return render_template("/index.html")
+
 
 @app.route("/api/iter")
 @cross_origin(origin='*')
