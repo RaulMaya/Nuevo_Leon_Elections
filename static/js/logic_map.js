@@ -9,12 +9,12 @@ function getColor(d) {
 }
 
 // // FLASK API FEED
-var iter = "http://127.0.0.1:5000/api/iter";
-var nlMunicipality = "http://127.0.0.1:5000/api/NL_geojson";
-var ginis = "http://127.0.0.1:5000/api/gini";
-var bronco = "http://127.0.0.1:5000/api/g2015";
-var samuel = "http://127.0.0.1:5000/api/g2021";
-var coordinates = "http://127.0.0.1:5000/api/coordinates";
+// var iter = "http://127.0.0.1:5000/api/iter";
+// var nlMunicipality = "http://127.0.0.1:5000/api/NL_geojson";
+// var ginis = "http://127.0.0.1:5000/api/gini";
+// var bronco = "http://127.0.0.1:5000/api/g2015";
+// var samuel = "http://127.0.0.1:5000/api/g2021";
+// var coordinates = "http://127.0.0.1:5000/api/coordinates";
 
 // LOCAL FEED
 // var iter = "../../A_ETL_Process/output/iter_1920r.js";
@@ -23,6 +23,14 @@ var coordinates = "http://127.0.0.1:5000/api/coordinates";
 // var samuel = "../../A_ETL_Process/output/resultados_g2021.json";
 // var bronco = "../../A_ETL_Process/output/resultados_g2015.json";
 // var coordinates = "../../A_ETL_Process/output/coordinatesr.js";
+
+// GITHUB FEED
+var iter = "https://raw.githubusercontent.com/RaulMaya/Nuevo_Leon_Elections/master/A_ETL_Process/output/iter_1920r.js";
+var nlMunicipality = "https://raw.githubusercontent.com/RaulMaya/Nuevo_Leon_Elections/master/D_Maps/static/data/nyu_geojson.json";
+var ginis = "https://raw.githubusercontent.com/RaulMaya/Nuevo_Leon_Elections/master/A_ETL_Process/output/dataframe_merged_apisr.js";
+var samuel = "https://raw.githubusercontent.com/RaulMaya/Nuevo_Leon_Elections/master/A_ETL_Process/output/resultados_g2021.json";
+var bronco = "https://raw.githubusercontent.com/RaulMaya/Nuevo_Leon_Elections/master/A_ETL_Process/output/resultados_g2015.json";
+var coordinates = "https://raw.githubusercontent.com/RaulMaya/Nuevo_Leon_Elections/master/A_ETL_Process/output/coordinatesr.js";
 
 
 var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
